@@ -21,11 +21,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Content\Views\Web.config.transform" />
     <Content Include="Content\wavenet.png" Pack="true" PackagePath="./wavenet.png" />
     <Content Include="Content\web.config.transform" Pack="true" PackagePath="content/web.config.transform" />
     <Content Include="Content\Views\web.config.transform" Pack="true" PackagePath="content/Views/web.config.transform" />
-    <None Remove="Content\Views\Web.config.transform" />
     <None Remove="stylecop.json" />
     <AdditionalFiles Include="stylecop.json" />
     <PackageReference Include="ImageProcessor" Version="2.7.0.100" />
