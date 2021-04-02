@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <Company>Wavenet</Company>
+    <LangVersion>8.0</LangVersion>
+    <nullable>enable</nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <DocumentationFile>Wavenet.Umbraco8.MediaExtensions.xml</DocumentationFile>
+    <Description>Extend Umbraco media management.</Description>
+    <Copyright>Wavenet ©</Copyright>
+    <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/wavenet-be/Wavenet.Umbraco8.MediaExtensions/</PackageProjectUrl>
+    <PackageIconUrl>https://www.wavenet.be/favicon.ico</PackageIconUrl>
+    <PackageIcon>wavenet.png</PackageIcon>
+    <RepositoryUrl>https://github.com/wavenet-be/Wavenet.Umbraco8.MediaExtensions/</RepositoryUrl>
+    <PackageTags>Umbraco8 Media Optimisations Cache</PackageTags>
+    <Version>1.0.0</Version>
+    <Authors>Olivier Bossaer</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Content\Views\Web.config.transform" />
+    <Content Include="Content\wavenet.png" Pack="true" PackagePath="./wavenet.png" />
+    <Content Include="Content\web.config.transform" Pack="true" PackagePath="content/web.config.transform" />
+    <Content Include="Content\Views\web.config.transform" Pack="true" PackagePath="content/Views/web.config.transform" />
+    <None Remove="Content\Views\Web.config.transform" />
+    <None Remove="stylecop.json" />
+    <AdditionalFiles Include="stylecop.json" />
+    <PackageReference Include="ImageProcessor" Version="2.7.0.100" />
+    <PackageReference Include="ImageProcessor.Web" Version="4.10.0.100" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="UmbracoCms.Web" Version="[8.7.0,8.99999)" />
+  </ItemGroup>
+
+</Project>

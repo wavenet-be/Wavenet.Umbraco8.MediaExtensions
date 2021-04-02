@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Wavenet.Umbraco8.MediaExtensions</name>
+    </assembly>
+    <members>
+        <member name="T:Wavenet.Umbraco8.MediaExtensions.Composition.MediaWithHashComposer">
+            <summary>
+            Setups the <see cref="T:Wavenet.Umbraco8.MediaExtensions.Routing.HashMediaUrlProvider" /> which will replace the default Umbraco implementation.
+            </summary>
+            <seealso cref="T:Umbraco.Core.Composing.IUserComposer" />
+            <seealso cref="T:Umbraco.Core.Composing.IUserComposer" />
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Composition.MediaWithHashComposer.Compose(Umbraco.Core.Composing.Composition)">
+            <inheritdoc />
+        </member>
+        <member name="T:Wavenet.Umbraco8.MediaExtensions.Composition.StaticCropComposer">
+            <summary>
+            Setups the <see cref="T:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator"/> as <see cref="T:Umbraco.Core.Models.IImageUrlGenerator"/>.
+            </summary>
+            <seealso cref="T:Umbraco.Core.Composing.IUserComposer" />
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Composition.StaticCropComposer.Compose(Umbraco.Core.Composing.Composition)">
+            <inheritdoc />
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Composition.StaticCropComposer.ResetCrops(Umbraco.Core.Services.IMediaService,Umbraco.Core.Events.SaveEventArgs{Umbraco.Core.Models.IMedia})">
+            <summary>
+            Resets the crops.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:Umbraco.Core.Events.SaveEventArgs`1"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Composition.StaticCropComposer.ResetCrops(Umbraco.Core.Services.IMediaService,Umbraco.Core.Events.MoveEventArgs{Umbraco.Core.Models.IMedia})">
+            <summary>
+            Resets the crops.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:Umbraco.Core.Events.MoveEventArgs`1"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Composition.StaticCropComposer.ResetCrops(System.Collections.Generic.IEnumerable{Umbraco.Core.Models.IMedia})">
+            <summary>
+            Resets the crops.
+            </summary>
+            <param name="medias">The medias.</param>
+        </member>
+        <member name="T:Wavenet.Umbraco8.MediaExtensions.Extensions.PathExtensions">
+            <summary>
+            Extensions for paths.
+            </summary>
+        </member>
+        <member name="F:Wavenet.Umbraco8.MediaExtensions.Extensions.PathExtensions.Cache">
+            <summary>
+            The cache.
+            </summary>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Extensions.PathExtensions.GetPathWithHash(System.Web.Mvc.UrlHelper,System.String)">
+            <summary>
+            Gets the path with Hash.
+            </summary>
+            <param name="urlHelper">The URL helper.</param>
+            <param name="path">The path.</param>
+            <returns>The hashed path.</returns>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Extensions.PathExtensions.GetPathWithHash(System.String)">
+            <summary>
+            Gets the path with Hash.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>The hashed path.</returns>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Extensions.PathExtensions.GetPathWithHash(System.Uri)">
+            <summary>
+            Gets the path with hash.
+            </summary>
+            <param name="path">The file path.</param>
+            <returns>If <paramref name="path"/> is a local static file, the url with an hash; Otherwise <paramref name="path"/>.</returns>
+        </member>
+        <member name="T:Wavenet.Umbraco8.MediaExtensions.HttpModules.ImageProcessingModule">
+            <summary>
+            Image processing module with rewriting/hash support.
+            </summary>
+            <seealso cref="T:ImageProcessor.Web.HttpModules.ImageProcessingModule" />
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.HttpModules.ImageProcessingModule.GetRequestUrl(System.Web.HttpRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:Wavenet.Umbraco8.MediaExtensions.Routing.HashMediaUrlProvider">
+            <summary>
+            <see cref="T:Wavenet.Umbraco8.MediaExtensions.Routing.HashMediaUrlProvider"/> extends <see cref="T:Umbraco.Web.Routing.DefaultMediaUrlProvider"/> to add an hash in media URL for better caching support.
+            </summary>
+            <seealso cref="T:Umbraco.Web.Routing.DefaultMediaUrlProvider" />
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.HashMediaUrlProvider.#ctor(Umbraco.Core.PropertyEditors.PropertyEditorCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Wavenet.Umbraco8.MediaExtensions.Routing.HashMediaUrlProvider"/> class.
+            </summary>
+            <param name="propertyEditors">The property editors.</param>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.HashMediaUrlProvider.GetMediaUrl(Umbraco.Web.UmbracoContext,Umbraco.Core.Models.PublishedContent.IPublishedContent,System.String,Umbraco.Core.Models.PublishedContent.UrlMode,System.String,System.Uri)">
+            <inheritdoc />
+        </member>
+        <member name="T:Wavenet.Umbraco8.MediaExtensions.Routing.ImageUrlGenerationEventArgs">
+            <summary>
+            <see cref="T:Wavenet.Umbraco8.MediaExtensions.Routing.ImageUrlGenerationEventArgs"/>.
+            </summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.ImageUrlGenerationEventArgs.#ctor(Umbraco.Core.Models.ImageUrlGenerationOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Wavenet.Umbraco8.MediaExtensions.Routing.ImageUrlGenerationEventArgs"/> class.
+            </summary>
+            <param name="options">The options.</param>
+        </member>
+        <member name="P:Wavenet.Umbraco8.MediaExtensions.Routing.ImageUrlGenerationEventArgs.Options">
+            <summary>
+            Gets the options.
+            </summary>
+            <value>
+            The options.
+            </value>
+        </member>
+        <member name="T:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator">
+            <summary>
+            <see cref="T:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator"/> makes a static crop for each <see cref="T:Umbraco.Core.Models.ImageUrlGenerationOptions"/>.
+            That way, we can optimize the static assets (eg webp).
+            </summary>
+            <seealso cref="T:Umbraco.Core.Models.IImageUrlGenerator" />
+        </member>
+        <member name="F:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.CropPrefix">
+            <summary>
+            The crop prefix.
+            </summary>
+        </member>
+        <member name="F:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.HashParser">
+            <summary>
+            The hash parser.
+            </summary>
+        </member>
+        <member name="F:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.baseImageUrlGenerator">
+            <summary>
+            The base image URL generator.
+            </summary>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator"/> class.
+            </summary>
+        </member>
+        <member name="E:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.BeforeGenerateImageUrl">
+            <summary>
+            The before generate image URL event.
+            </summary>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.GetImageUrl(Umbraco.Core.Models.ImageUrlGenerationOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.AutoProcess(ImageProcessor.ImageFactory,ImageProcessor.Web.Processors.IWebGraphicsProcessor[])">
+            <summary>
+            Automatics the process.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="graphicsProcessors">The graphics processors.</param>
+            <returns>Returns the factory.</returns>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.GetHashCode(Umbraco.Core.Models.ImageUrlGenerationOptions)">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <param name="options">The options.</param>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+            </returns>
+            <remarks>We ignore <c>options.CacheBusterValue</c> because our URLs are with an hash.</remarks>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.GetHashCode(Umbraco.Core.Models.ImageUrlGenerationOptions.FocalPointPosition)">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <param name="focalPoint">The focal point.</param>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+            </returns>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.GetHashCode(Umbraco.Core.Models.ImageUrlGenerationOptions.CropCoordinates)">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <param name="crop">The crop.</param>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+            </returns>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.GetMatchingProcessors(System.String)">
+            <summary>
+            Gets the matching processors for the specified <paramref name="querystring"/>.
+            </summary>
+            <param name="querystring">The querystring.</param>
+            <returns>The matching processors.</returns>
+        </member>
+        <member name="M:Wavenet.Umbraco8.MediaExtensions.Routing.StaticImageUrlGenerator.GetPathWithHash(System.String,System.String,System.String)">
+            <summary>
+            Gets the path with hash.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="hash">The hash.</param>
+            <param name="extension">The extension.</param>
+            <returns>The hashed path.</returns>
+        </member>
+        <member name="T:Wavenet.Umbraco8.MediaExtensions.Settings">
+            <summary>
+            Settings for MediaExtensions.
+            </summary>
+        </member>
+        <member name="P:Wavenet.Umbraco8.MediaExtensions.Settings.CdnUrl">
+            <summary>
+            Gets the CDN URL.
+            </summary>
+            <value>
+            The CDN URL.
+            </value>
+        </member>
+    </members>
+</doc>

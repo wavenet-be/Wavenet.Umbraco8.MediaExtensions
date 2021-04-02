@@ -1,0 +1,46 @@
+﻿<?xml version="1.0"?>
+<configuration>
+  <system.web>
+    <httpModules>
+      <remove name="ImageProcessorModule" />
+      <add name="ImageProcessorModule" type="Wavenet.Umbraco8.MediaExtensions.HttpModules.ImageProcessingModule, Wavenet.Umbraco8.MediaExtensions"/>
+    </httpModules>
+  </system.web>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true">
+      <remove name="ImageProcessorModule" />
+      <add name="ImageProcessorModule" type="Wavenet.Umbraco8.MediaExtensions.HttpModules.ImageProcessingModule, Wavenet.Umbraco8.MediaExtensions"/>
+    </modules>
+    <rewrite>
+      <outboundRules>
+        <rule name="mediaextensions-remove-etag" preCondition="mediaextensions-has-hash">
+          <match serverVariable="RESPONSE_etag" pattern="."/>
+          <action type="Rewrite" value=""/>
+        </rule>
+        <rule name="mediaextensions-remove-last-modified" preCondition="mediaextensions-has-hash">
+          <match serverVariable="RESPONSE_Last_Modified" pattern="."/>
+          <action type="Rewrite" value=""/>
+        </rule>
+        <rule name="mediaextensions-remove-imageprocessedby">
+          <match serverVariable="RESPONSE_imageprocessedby" pattern="."/>
+          <action type="Rewrite" value=""/>
+        </rule>
+        <rule name="mediaextensions-add-immutable" preCondition="mediaextensions-has-hash">
+          <match serverVariable="RESPONSE_Cache_Control" pattern=".*"/>
+          <action type="Rewrite" value="public, max-age=31536000, immutable"/>
+        </rule>
+        <preConditions>
+          <preCondition name="mediaextensions-has-hash">
+            <add input="{UNENCODED_URL}" pattern="-h-[0-9a-f]{8}\.\w+(?:\?.+)?$"/>
+          </preCondition>
+        </preConditions>
+      </outboundRules>
+      <rules>
+        <rule name="mediaextensions.hash">
+          <match url="(.+)-h-[0-9a-f]{8}(\.\w+)$"/>
+          <action type="Rewrite" url="{R:1}{R:2}"/>
+        </rule>
+      </rules>
+    </rewrite>
+  </system.webServer>
+</configuration>
